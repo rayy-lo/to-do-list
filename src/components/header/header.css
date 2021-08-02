@@ -1,0 +1,16 @@
+.todo-header {
+  height: 7vh;
+  background-color: var(--primary-color);
+  color: var(--text-color-on-primary);
+  line-height: 7vh;
+  font-size: 2rem;
+  padding: 0 2rem;
+}
+
+.todo-logo {
+  object-fit: cover;
+  width: 40px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}

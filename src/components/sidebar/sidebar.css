@@ -1,0 +1,27 @@
+.todo-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 7vh);
+  max-width: 300px;
+  padding: 2rem;
+  background: var(--secondary-color);
+  border-right: 1px solid lightgrey;
+}
+
+.sidebar-buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-button {
+  padding: 10px;
+  margin: 0.5rem 0;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sidebar-button:focus {
+  outline: 2px solid var(--primary-color);
+}

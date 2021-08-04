@@ -6,5 +6,11 @@ import { renderHeader } from "./components/header/header";
 import { renderSidebar } from "./components/sidebar/sidebar";
 
 const body = document.querySelector("body");
+const main = document.createElement("main");
+
 renderHeader(body);
-renderSidebar(body);
+
+body.appendChild(main);
+renderSidebar(main);
+
+// setup test data on page load

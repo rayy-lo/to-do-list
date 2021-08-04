@@ -1,4 +1,5 @@
 import "./sidebar.css";
+import { renderProjectSection } from "../projects/projects";
 
 const sidebarButtons = [
   {
@@ -29,7 +30,10 @@ export const renderSidebar = (container) => {
   sidebar.classList.add("todo-sidebar");
 
   const buttons = createSidebarButtons(sidebarButtons);
+  const projects = renderProjectSection();
 
   sidebar.appendChild(buttons);
+  sidebar.appendChild(projects);
+
   container.appendChild(sidebar);
 };

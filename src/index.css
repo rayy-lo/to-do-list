@@ -8,6 +8,10 @@ body {
   height: 100%;
 }
 
+main {
+  height: calc(100% - 7vh);
+}
+
 html {
   box-sizing: border-box;
   height: 100%;

@@ -14,12 +14,17 @@
 }
 
 .sidebar-button {
-  padding: 10px;
+  padding: 10px 0;
   margin: 0.5rem 0;
+  font-size: 1.2rem;
   background: transparent;
   border: none;
   text-align: left;
   cursor: pointer;
+}
+
+.sidebar-button:focus {
+  font-weight: bold;
 }
 
 .sidebar-button:focus {

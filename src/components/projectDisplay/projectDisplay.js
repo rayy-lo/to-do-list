@@ -1,3 +1,3 @@
-import "./task-display.css";
+import "./projectDisplay.css";
 
 export const renderTaskDisplay = (tasks, header) => {};

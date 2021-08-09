@@ -7,6 +7,21 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
+    <div id="project-form-overlay">
+      <form class="project-form">
+        <button
+          aria-controls="project-form-overlay"
+          type="button"
+          class="close-form-btn"
+        >
+          &#x2715;
+        </button>
+        <h2 class="text-center">Add A New Project</h2>
+        <label for="project-name-input">What's the project name?</label>
+        <input required type="text" id="project-name-input" />
+        <button type="submit">Create</button>
+      </form>
+    </div>
     <header class="todo-header">
       <svg
         class="todo-logo"
@@ -125,7 +140,12 @@
         <div class="todo-projects">
           <h2 class="project-header">
             Projects
-            <button class="add-project-btn">+</button>
+            <button
+              aria-controls="project-form-overlay"
+              class="add-project-btn"
+            >
+              +
+            </button>
           </h2>
           <div class="projects-section"></div>
         </div>

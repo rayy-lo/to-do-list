@@ -1,5 +1,18 @@
-export const taskFactory = (title, description, dueDate, priority, project) => {
-  return { title, description, dueDate, priority, project };
+export const Task = (title, description, dueDate, priority, project) => {
+  const task = {
+    title,
+    description,
+    dueDate,
+    priority,
+    project,
+  };
+
+  const storeTask = () => {};
+
+  return {
+    task,
+    storeTask,
+  };
 };
 
 export const storeTask = (task) => {

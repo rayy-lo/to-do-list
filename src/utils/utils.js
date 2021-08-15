@@ -1,6 +1,6 @@
-const getTasks = () => {
-  const tasks = localStorage.getItem("tasks");
-  return tasks;
+export const getProjects = () => {
+  const projects = JSON.parse(localStorage.getItem("projects"));
+  return projects;
 };
 
 const getTasksByProject = (tasks) => {
@@ -11,17 +11,4 @@ const getTasksByProject = (tasks) => {
   }
 
   console.log(projects);
-};
-
-const getTasksByDate = () => {
-  console.log("return filtered tasks by date");
-};
-
-export const loadProjects = () => {
-  const tasks = JSON.parse(getTasks());
-  const projects = getTasksByProject(tasks);
-};
-
-export const loadTasks = () => {
-  console.log("render tasks into display");
 };

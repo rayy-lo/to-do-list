@@ -4,11 +4,14 @@ export const Project = (projectName) => {
     tasks: [],
   };
 
-  const storeProject = () => {};
+  const storeProject = () => {
+    const currentProjects = Store.getState();
+    const newProjects = [];
+  };
 
   return {
-    projectName,
-    tasks,
+    project,
+    storeProject,
   };
 };
 

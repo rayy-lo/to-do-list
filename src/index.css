@@ -67,6 +67,7 @@ input:invalid {
 .sidebar-buttons-wrapper {
   display: flex;
   flex-direction: column;
+  margin-bottom: 2rem;
 }
 
 .sidebar-button {

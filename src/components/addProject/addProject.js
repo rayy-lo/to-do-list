@@ -1,4 +1,8 @@
 import "./addProject.css";
+import { getProjects } from "../../utils/utils";
+import { NEW_PROJECT } from "../../utils/events";
+import { Project } from "../../models/project";
+import PubSub from "pubsub-js";
 
 const addProjectForm = document.querySelector(".project-form");
 const addProjectBtn = document.querySelector(".add-project-btn");
@@ -8,7 +12,10 @@ const closeProjectFormBtn = document.querySelector(
 
 const handleProjectFormSubmit = (e) => {
   e.preventDefault();
-  console.log("form submitted");
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData);
+
+  PubSub.publish(NEW_PROJECT, data);
 };
 
 const toggleFormDisplay = (e) => {

@@ -1,0 +1,26 @@
+.sidebar-projectName {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px 0;
+  position: relative;
+}
+
+.sidebar-projectName:first-child {
+  padding: 0 0 10px;
+}
+
+.sidebar-projectName > p {
+  margin: 0;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+}
+
+.right-carat {
+  position: absolute;
+  left: -1rem;
+  height: 12px;
+}

@@ -1,8 +1,8 @@
 import "./addProject.css";
-import { getProjects } from "../../utils/utils";
 import { NEW_PROJECT } from "../../utils/events";
 import { Project } from "../../models/project";
 import PubSub from "pubsub-js";
+import { storeProject } from "../../utils/utils";
 
 const addProjectForm = document.querySelector(".project-form");
 const addProjectBtn = document.querySelector(".add-project-btn");
@@ -12,10 +12,17 @@ const closeProjectFormBtn = document.querySelector(
 
 const handleProjectFormSubmit = (e) => {
   e.preventDefault();
-  const formData = new FormData(e.target);
-  const data = Object.fromEntries(formData);
+  const form = e.target;
+  const formData = new FormData(form);
+  const newProject = Project(formData.get("project-name"));
 
-  PubSub.publish(NEW_PROJECT, data);
+  storeProject(newProject);
+  Store.updateState();
+
+  form.reset();
+  form.parentElement.classList.toggle("open");
+
+  PubSub.publish(NEW_PROJECT, newProject);
 };
 
 const toggleFormDisplay = (e) => {

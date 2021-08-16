@@ -1,18 +1,8 @@
-export const Project = (projectName) => {
+export const Project = (projectName, tasks = []) => {
   const project = {
     projectName,
-    tasks: [],
+    tasks,
   };
 
-  const storeProject = () => {
-    const currentProjects = Store.getState();
-    const newProjects = [];
-  };
-
-  return {
-    project,
-    storeProject,
-  };
+  return project;
 };
-
-// export const storeProject

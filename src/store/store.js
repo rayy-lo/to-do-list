@@ -1,3 +1,5 @@
+import { getProjects } from "../utils/utils";
+
 export const createStore = (data) => {
   let state = data;
 
@@ -5,7 +7,8 @@ export const createStore = (data) => {
     return state;
   };
 
-  const updateState = (newState) => {
+  const updateState = () => {
+    const newState = getProjects();
     state = newState;
     return state;
   };

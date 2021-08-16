@@ -6,21 +6,19 @@ import { NEW_PROJECT } from "../../utils/events";
 const container = document.querySelector(".projects-section");
 
 export const renderProjectSection = () => {
-  const data = getProjects();
-  if (!data) return;
+  const data = Store.getState();
 
   const markup = `
-    ${data.map(
-      (project) =>
-        `
+    ${data
+      .map(
+        (project) =>
+          `
         <div class="sidebar-project">
-          <button aria-controls="${
-            project.projectName
-          }-tasks" type="button" class="sidebar-projectName">
+          <button aria-controls="${project.projectName}-tasks" type="button" class="sidebar-projectName">
               <img class="right-carat" src=${RightArrowIcon}>
               <p>
                   ${project.projectName}
-                  <span>${project.tasks.length + 1}</span>
+                  <span>${project.tasks.length}</span>
               </p>
           </button>
           <div id="${project.projectName}-tasks" class="sidebar-tasks">
@@ -28,10 +26,10 @@ export const renderProjectSection = () => {
           </div>
         </div>
         `
-    )}
+      )
+      .join("")}
 `;
 
-  console.log(data);
   container.innerHTML = markup;
 };
 

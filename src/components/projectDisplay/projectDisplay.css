@@ -1,3 +1,28 @@
 #task-display {
   flex: 1;
+  padding: 2rem 4rem;
+  position: relative;
+}
+
+.project-display-header {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.add-task-btn {
+  cursor: pointer;
+  background: var(--secondary-color);
+  padding: 15px;
+  border-radius: 5px;
+  border: none;
+  width: 200px;
+  position: absolute;
+  right: 5%;
+  bottom: 3%;
+}
+
+.no-project-message {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: normal;
 }

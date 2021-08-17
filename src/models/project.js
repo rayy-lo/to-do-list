@@ -4,5 +4,11 @@ export const Project = (projectName, tasks = []) => {
     tasks,
   };
 
+  const generateID = () => {
+    return Math.random().toString(16).slice(2);
+  };
+
+  project.id = generateID();
+
   return project;
 };

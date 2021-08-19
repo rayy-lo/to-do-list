@@ -9,6 +9,8 @@ export const storeProject = (project) => {
   localStorage.setItem("projects", JSON.stringify(newProjectList));
 };
 
+export const storeTask = (project, task) => {};
+
 const getTasksByProject = (tasks) => {
   console.log(tasks);
   const projects = {};

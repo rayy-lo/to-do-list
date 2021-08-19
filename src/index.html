@@ -27,6 +27,36 @@
         <button type="submit">Create</button>
       </form>
     </div>
+    <div id="task-form-overlay">
+      <form class="task-form">
+        <button
+          aria-controls="task-form-overlay"
+          type="button"
+          class="close-form-btn"
+        >
+          &#x2715;
+        </button>
+        <h2 class="text-center">Add Task To Project</h2>
+        <label for="task-name">Task</label>
+        <input name="task-name" required type="text" />
+        <label for="task-description">Task Description</label>
+        <textarea
+          name="task-description"
+          id="task-description"
+          required
+          type="text"
+        ></textarea>
+        <label for="dueDate">Due Date</label>
+        <input name="dueDate" required type="date" />
+        <label for="priority">Priority</label>
+        <select name="priority" id="priority">
+          <option value="high">High Priority</option>
+          <option value="medium">Medium Priority</option>
+          <option value="low">Low Priority</option>
+        </select>
+        <button type="submit">Create</button>
+      </form>
+    </div>
     <header class="todo-header">
       <svg
         class="todo-logo"

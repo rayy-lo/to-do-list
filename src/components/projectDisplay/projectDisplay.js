@@ -1,8 +1,17 @@
 import "./projectDisplay.css";
 
 const attachEventListeners = () => {
+  const closeProjectFormBtn = document.querySelector(
+    ".task-form > .close-form-btn"
+  );
   const addTaskBtn = document.querySelector(".add-task-btn");
   addTaskBtn.addEventListener("click", toggleFormDisplay);
+  closeProjectFormBtn.addEventListener("click", toggleFormDisplay);
+};
+
+const handleTaskFormSubmit = (e) => {
+  e.preventDefault();
+  console.log("create task");
 };
 
 const toggleFormDisplay = (e) => {
@@ -33,7 +42,7 @@ export const renderProjectDisplay = (e) => {
               )
         }
     </div>
-    <button type="button" class="add-task-btn">
+    <button aria-controls="task-form-overlay" type="button" class="add-task-btn">
         Add Task
     </button>
   `;

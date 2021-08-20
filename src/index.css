@@ -170,3 +170,18 @@ input:invalid {
   font-size: 1.2rem;
   margin-bottom: 1rem;
 }
+
+#task-description {
+  height: 100px;
+}
+
+.two-form-group {
+  display: flex;
+  margin: 1rem 0;
+  justify-content: space-between;
+}
+
+[for="priority"],
+[for="dueDate"] {
+  line-height: 2rem;
+}

@@ -1,6 +1,7 @@
 import "./projectDisplay.css";
 import { Task } from "../../models/task";
-import { storeTask } from "../../utils/utils";
+import { getProjectByID, storeTask } from "../../utils/utils";
+import { renderProjectTasks } from "../task/task";
 import { NEW_TASK } from "../../utils/events";
 
 const attachEventListeners = () => {
@@ -36,7 +37,7 @@ const handleTaskFormSubmit = (e) => {
   form.reset();
   form.parentElement.classList.toggle("open");
 
-  PubSub.publish(NEW_TASK, newTask);
+  PubSub.publish(NEW_TASK, projectID);
 };
 
 const toggleFormDisplay = (e) => {
@@ -54,32 +55,12 @@ export const renderProjectDisplay = (e) => {
 
   const markup = `
     <h2 class="project-display-header">${project.projectName}</h2>
-    <div class="project-tasks-wrapper">
-        ${
-          project.tasks.length < 1
-            ? `<h3 class="no-project-message">There are currently no tasks for this project. Add one!</h3>`
-            : project.tasks.map(
-                (task) => `
-                  <div class="project-task">
-                      ${task.title}
-                  </div>
-              `
-              )
-        }
-    </div>
-    <button data-project-id=${
-      project.id
-    } aria-controls="task-form-overlay" type="button" class="add-task-btn">
+    <div class="project-tasks-wrapper"></div>
+    <button data-project-id=${project.id} aria-controls="task-form-overlay" type="button" class="add-task-btn">
         Add Task
     </button>
   `;
   displayContainer.innerHTML = markup;
   attachEventListeners();
-};
-
-const getProjectByID = (id) => {
-  const projects = Store.getState();
-  const project = projects.find((project) => project.id === id);
-
-  return project;
+  renderProjectTasks(id);
 };

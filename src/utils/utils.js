@@ -17,3 +17,10 @@ export const storeTask = (projectID, task) => {
   projectToStore.tasks.push(task);
   localStorage.setItem("projects", JSON.stringify(currentProjectList));
 };
+
+export const getProjectByID = (id) => {
+  const projects = Store.getState();
+  const project = projects.find((project) => project.id === id);
+
+  return project;
+};

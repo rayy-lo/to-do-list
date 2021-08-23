@@ -1,18 +1,25 @@
 import "./projects.css";
 import RightArrowIcon from "./right-arrow.png";
-import { NEW_PROJECT, NEW_TASK } from "../../utils/events";
+import { NEW_PROJECT, NEW_TASK, REMOVE_TASK } from "../../utils/events";
 import { renderProjectDisplay } from "../projectDisplay/projectDisplay";
 
 const container = document.querySelector(".projects-section");
 
 const attachEventListeners = () => {
   const projectHeaders = document.querySelectorAll(".sidebar-projectName");
-  projectHeaders.forEach((btn) =>
-    btn.addEventListener("click", renderProjectDisplay)
-  );
+  projectHeaders.forEach((btn) => {
+    btn.addEventListener("click", renderProjectDisplay);
+    btn.addEventListener("click", toggleProjectTasks);
+  });
 };
 
-const renderProjectTasks = (id) => {};
+const toggleProjectTasks = (e) => {
+  if (e.target.tagName != "BUTTON") return;
+  const menuId = e.target.getAttribute("aria-controls");
+  const menu = document.querySelector(`#${menuId}`);
+
+  menu.classList.toggle("expanded");
+};
 
 export const renderProjectSection = () => {
   const data = Store.getState();
@@ -32,7 +39,9 @@ export const renderProjectSection = () => {
                   <span class="task-amount">${project.tasks.length}</span>
               </p>
           </button>
-          <div id="${project.projectName}-tasks" class="sidebar-tasks">
+          <div aria-expanded="true" id="${
+            project.projectName
+          }-tasks" class="sidebar-tasks expanded">
             ${project.tasks
               .map(
                 (task) => `
@@ -47,11 +56,9 @@ export const renderProjectSection = () => {
       .join("")}
 `;
   container.innerHTML = markup;
-  renderProjectTasks();
   attachEventListeners();
 };
 
 PubSub.subscribe(NEW_PROJECT, renderProjectSection);
-PubSub.subscribe(NEW_TASK, function (msg, data) {
-  renderProjectTasks(data);
-});
+PubSub.subscribe(NEW_TASK, renderProjectSection);
+PubSub.subscribe(REMOVE_TASK, renderProjectSection);

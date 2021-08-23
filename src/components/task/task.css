@@ -28,13 +28,23 @@
 .priority-circle {
   height: 20px;
   width: 20px;
+  margin-right: 1.5rem;
+  border-radius: 50%;
 }
 
 .priority-circle.high {
   background: #ffcccc;
   border: 1px solid #980000;
-  margin-right: 1.5rem;
-  border-radius: 50%;
+}
+
+.priority-circle.medium {
+  background: #ffd580;
+  border: 1px solid orange;
+}
+
+.priority-circle.low {
+  border: 1px solid green;
+  background: lightgreen;
 }
 
 .task-top-half {

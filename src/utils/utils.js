@@ -24,3 +24,15 @@ export const getProjectByID = (id) => {
 
   return project;
 };
+
+export const deleteTaskFromStorage = (projectID, taskID) => {
+  const projectList = getProjects();
+
+  for (let project of projectList) {
+    if (project.id == projectID) {
+      project.tasks = project.tasks.filter((task) => task.id !== taskID);
+    }
+  }
+
+  localStorage.setItem("projects", JSON.stringify(projectList));
+};

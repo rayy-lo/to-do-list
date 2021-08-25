@@ -9,6 +9,12 @@ export const storeProject = (project) => {
   localStorage.setItem("projects", JSON.stringify(newProjectList));
 };
 
+export const deleteProject = (projectID) => {
+  const projectList = getProjects();
+  const newList = projectList.filter((project) => project.id !== projectID);
+  localStorage.setItem("projects", JSON.stringify(newList));
+};
+
 export const storeTask = (projectID, task) => {
   const currentProjectList = getProjects();
   const projectToStore = currentProjectList.find(

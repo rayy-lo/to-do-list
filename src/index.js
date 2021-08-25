@@ -7,8 +7,12 @@ import "./components/projects/projects";
 import { getProjects } from "./utils/utils";
 import { createStore } from "./store/store";
 import { renderProjectSection } from "./components/projects/projects";
+import { renderProjectDisplay } from "./components/projectDisplay/projectDisplay";
 
 const projects = getProjects();
 window.Store = createStore(projects);
 renderProjectSection();
-// loadTasks();
+
+if (projects.length > 0) {
+  renderProjectDisplay(projects[0].id);
+}

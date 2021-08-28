@@ -3,6 +3,7 @@ import "./index.css";
 import "./components/addProject/addProject";
 import "./components/projectDisplay/projectDisplay";
 import "./components/projects/projects";
+import "./components/hamburger-menu/hamburger-menu";
 
 import { getProjects } from "./utils/utils";
 import { createStore } from "./store/store";

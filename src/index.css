@@ -42,6 +42,8 @@ input:invalid {
   color: var(--text-color-on-primary);
   line-height: 7vh;
   font-size: 2rem;
+  display: flex;
+  justify-content: space-between;
   padding: 0 2rem;
 }
 
@@ -184,4 +186,82 @@ input:invalid {
 [for="priority"],
 [for="dueDate"] {
   line-height: 2rem;
+}
+
+.mobile-menu {
+  display: none;
+  font-size: 3rem;
+}
+
+@media screen and (max-width: 840px) {
+  .mobile-menu {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .todo-sidebar {
+    display: none;
+    transform: translateX(-100%);
+    position: absolute;
+    display: block;
+    z-index: 1;
+    width: 300px;
+    height: calc(100% - 7vh);
+  }
+
+  .task-form {
+    width: 90vw;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .two-form-group {
+    flex-direction: column;
+  }
+
+  .two-form-group input,
+  .two-form-group select {
+    padding: 10px;
+  }
+}
+
+.slide-in {
+  animation: slide-in 0.5s forwards;
+  -webkit-animation: slide-in 0.5s forwards;
+}
+
+.slide-out {
+  animation: slide-out 0.5s forwards;
+  -webkit-animation: slide-out 0.5s forwards;
+}
+
+@keyframes slide-in {
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@-webkit-keyframes slide-in {
+  100% {
+    -webkit-transform: translateX(0%);
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@-webkit-keyframes slide-out {
+  0% {
+    -webkit-transform: translateX(0%);
+  }
+  100% {
+    -webkit-transform: translateX(-100%);
+  }
 }

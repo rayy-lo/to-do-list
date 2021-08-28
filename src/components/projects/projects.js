@@ -1,6 +1,11 @@
 import "./projects.css";
 import RightArrowIcon from "./right-arrow.png";
-import { NEW_PROJECT, NEW_TASK, REMOVE_TASK } from "../../utils/events";
+import {
+  NEW_PROJECT,
+  NEW_TASK,
+  REMOVE_PROJECT,
+  REMOVE_TASK,
+} from "../../utils/events";
 import { renderProjectDisplay } from "../projectDisplay/projectDisplay";
 
 const container = document.querySelector(".projects-section");
@@ -8,9 +13,15 @@ const container = document.querySelector(".projects-section");
 const attachEventListeners = () => {
   const projectHeaders = document.querySelectorAll(".sidebar-projectName");
   projectHeaders.forEach((btn) => {
-    btn.addEventListener("click", renderProjectDisplay);
+    btn.addEventListener("click", handleProjectHeaderClick);
     btn.addEventListener("click", toggleProjectTasks);
   });
+};
+
+const handleProjectHeaderClick = (e) => {
+  const projectBtn = e.target.closest(".sidebar-projectName");
+  const id = projectBtn.getAttribute("data-project-id");
+  renderProjectDisplay(id);
 };
 
 const toggleProjectTasks = (e) => {
@@ -62,3 +73,4 @@ export const renderProjectSection = () => {
 PubSub.subscribe(NEW_PROJECT, renderProjectSection);
 PubSub.subscribe(NEW_TASK, renderProjectSection);
 PubSub.subscribe(REMOVE_TASK, renderProjectSection);
+PubSub.subscribe(REMOVE_PROJECT, renderProjectSection);

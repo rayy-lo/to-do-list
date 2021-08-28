@@ -1,8 +1,8 @@
 import "./projectDisplay.css";
 import { Task } from "../../models/task";
-import { getProjectByID, storeTask } from "../../utils/utils";
+import { getProjectByID, storeTask, deleteProject } from "../../utils/utils";
 import { renderProjectTasks } from "../task/task";
-import { NEW_TASK } from "../../utils/events";
+import { NEW_TASK, REMOVE_PROJECT } from "../../utils/events";
 
 const attachEventListeners = () => {
   const closeProjectFormBtn = document.querySelector(
@@ -10,7 +10,9 @@ const attachEventListeners = () => {
   );
   const addTaskBtn = document.querySelector(".add-task-btn");
   const taskForm = document.querySelector(".task-form");
+  const deleteProjectBtn = document.querySelector(".del-project-btn");
 
+  deleteProjectBtn.addEventListener("click", handleProjectDelete);
   taskForm.addEventListener("submit", handleTaskFormSubmit);
   addTaskBtn.addEventListener("click", toggleFormDisplay);
   closeProjectFormBtn.addEventListener("click", toggleFormDisplay);
@@ -40,6 +42,16 @@ const handleTaskFormSubmit = (e) => {
   PubSub.publish(NEW_TASK, projectID);
 };
 
+const handleProjectDelete = (e) => {
+  const id = e.target.getAttribute("data-project-id");
+  deleteProject(id);
+
+  PubSub.publish(REMOVE_PROJECT, id);
+  Store.updateState();
+
+  document.querySelector("#task-display").innerHTML = "";
+};
+
 const toggleFormDisplay = (e) => {
   const formID = e.target.getAttribute("aria-controls");
   const form = document.getElementById(formID);
@@ -47,19 +59,23 @@ const toggleFormDisplay = (e) => {
   form.classList.toggle("open");
 };
 
-export const renderProjectDisplay = (e) => {
-  const projectBtn = e.target.closest(".sidebar-projectName");
-  const id = projectBtn.getAttribute("data-project-id");
+export const renderProjectDisplay = (id) => {
   const project = getProjectByID(id);
   const displayContainer = document.querySelector("#task-display");
 
   const markup = `
-    <h2 class="project-display-header">${project.projectName}</h2>
-    <div class="project-tasks-wrapper"></div>
-    <button data-project-id=${project.id} aria-controls="task-form-overlay" type="button" class="add-task-btn">
-        Add Task
-    </button>
+    ${`<h2 class="project-display-header">${project.projectName}</h2>
+      <div class="project-tasks-wrapper"></div>
+      <button data-project-id=${project.id} aria-controls="task-form-overlay" type="button" class="add-task-btn">
+          Add Task
+      </button>`}
+      <button data-project-id=${
+        project.id
+      } type="button" class="del-project-btn">
+        Delete Project
+      </button>
   `;
+
   displayContainer.innerHTML = markup;
   attachEventListeners();
   renderProjectTasks(id);

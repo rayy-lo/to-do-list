@@ -11,20 +11,43 @@
   margin-bottom: 1rem;
 }
 
-.add-task-btn {
+.add-task-btn,
+.del-project-btn {
   cursor: pointer;
-  background: var(--secondary-color);
   padding: 15px;
   border-radius: 5px;
   border: none;
   width: 200px;
   position: absolute;
-  right: 5%;
   bottom: 3%;
+  background: var(--primary-color);
+  color: white;
+  font-weight: bold;
+}
+
+.add-task-btn {
+  right: 5%;
+}
+
+.del-project-btn {
+  left: 5%;
 }
 
 .no-project-message {
   text-align: center;
   font-size: 2rem;
   font-weight: normal;
+}
+
+@media screen and (max-width: 840px) {
+  #task-display {
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .add-task-btn,
+  .del-project-btn {
+    width: 130px;
+  }
 }
